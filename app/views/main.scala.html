@@ -1,0 +1,57 @@
+@(pageID: String)(content: Html)
+<!DOCTYPE html>
+<html lang="en" id="@pageID">
+    <head>
+        @* Here's where we render the page title `String`. *@
+        <!-- Title from parameter value -->
+        <title>Core Design - @pageID</title>
+
+        <!-- Generate links to CSS files -->
+        <link href="@routes.Assets.versioned("stylesheets/Style.css")" rel="stylesheet" type="text/css">
+        <link href="@routes.Assets.versioned("stylesheets/Form.css")" rel="stylesheet" type="text/css" />
+        
+        <!-- Bootsrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    </head>
+    <body>
+        @* And here's where we render the `Html` object containing
+         * the page content. *@
+
+
+         <div id="Logo">
+            <h1>Core Design</h1>
+            <h3>
+                <em>Website Design and Development Services</em>
+            </h3>
+            
+         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <!-- nav header/ branding -->
+              <a class="navbar-brand" href="/">Core Design</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuBar" aria-controls="menuBar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+
+             
+             <div class="collapse navbar-collapse" id="menuBar">
+                <!-- List containing nav links -->
+                <ul class="navbar-nav mr-auto">
+                    <li @if(pageID == "Home"){class="active"}><a class="nav-link" href="@routes.HomeController.index()">Home</a></li>
+                    <li @if(pageID == "About"){class="active"}><a class="nav-link" href="@routes.HomeController.about()">About Us</a></li>
+                    <li @if(pageID == "Services"){class="active"}><a class="nav-link" href="@routes.HomeController.services()">Services</a></li>
+                    <li @if(pageID == "Clients"){class="active"}><a class="nav-link" href="@routes.HomeController.clients()">Clients</a></li>
+                    <li @if(pageID == "Contact"){class="active"}><a class="nav-link" href="@routes.HomeController.contact()">Contact</a></li>
+                 </ul>
+             </div>
+            </nav>
+             <div id="Footer">
+                 @content
+             </div>
+             <div id="Footer">
+                 <h6>
+                     <em>Copyright &copy; 2015 Core Design</em>
+                 </h6>
+             </div>
+         </div>
+    </body>
+</html>
